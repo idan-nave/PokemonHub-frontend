@@ -1,0 +1,83 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Build directories
+dist/
+dist-ssr/
+build/
+
+# Vite specific
+.vite/
+*.swp  # Swap files
+
+# TypeScript
+*.tsbuildinfo
+*.d.ts
+
+# Editor directories and files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Sensitive environment variables
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.swp
+*.swo
+*.swn
+
+# Yarn lock file backups (if applicable)
+yarn.lock.*
+
+# OS files
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Desktop.ini
+ehthumbs.db
+
+# IDE specific
+.idea/
+*.code-workspace
+
+# Build output directories
+out/
+build/
+
+# Test coverage
+coverage/
+
+# npm / Yarn global directories (e.g., for global packages or caches)
+.npm/
+.yarn/
+.pnpm/
+
+# Firebase/Netlify/Other deploy configs
+firebase.json
+netlify.toml
+
+# Local environment settings
+local-settings.json
+*.local
+
+# Others
+*.tgz
+*.bak
+
