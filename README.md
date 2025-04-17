@@ -16,40 +16,41 @@ This is the frontend application for the Pokémon app, built with **Vite**, **Re
 
 Clone the repository to your local machine.
 
-```bash
+```
 git clone https://github.com/idan-nave/PokemonHub-frontend
 ```
 
-### 2. Install Yarn package manager
+### 2. Install Node.js (via NVM)
 
-```bash
+NVM should be first installed (https://github.com/nvm-sh/nvm).
+Run the following to install and use the correct Node.js version:
+
+```
+nvm install
+```
+
+From now on- ensure you're using the right version of Node.js with NVM.
+```
+nvm use
+```
+This will use the Node.js version specified in the `.nvmrc` file.
+
+### 3. Install Yarn package manager
+
+```
 sudo npm install --global yarn
 sudo yarn global add create-vite
 ```
-apply permissions over the project for ease of development.
+apply permissions over the project for ease of development, if needed.
 
-```bash
+```
 sudo chown -R $(whoami):$(whoami) .../pokemon-hub-frontend
 ```
-
-### 3. Install Node.js (via NVM)
-
-Ensure you're using the right version of Node.js with NVM. If you don't have NVM installed, follow the installation instructions [here](https://github.com/nvm-sh/nvm).
-
-Run the following to install and use the correct Node.js version:
-
-```bash
-nvm install
-nvm use
-```
-
-This will use the Node.js version specified in the `.nvmrc` file.
-
 ### 4. Install Dependencies
 
 Once you have the correct Node.js version, use Yarn to install the project dependencies:
 
-```bash
+```
 yarn install
 ```
 
@@ -57,7 +58,7 @@ yarn install
 
 Start the development server with:
 
-```bash
+```
 yarn dev
 ```
 
@@ -67,7 +68,7 @@ The application should now be running on [http://localhost:5137](http://localhos
 
 To create a production build of the application:
 
-```bash
+```
 yarn build
 ```
 
@@ -76,51 +77,3 @@ This will output the production files in the `dist/` directory.
 ---
 
 Once you've set this up, you can proceed to create a **PR** and submit it for review.
-
-
-
-### 7. Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
