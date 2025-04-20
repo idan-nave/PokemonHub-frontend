@@ -1,7 +1,7 @@
-import './styles/App.css'
+import { HomePage } from '@pages/Home/HomePage';
 
 const App = () => {
-  return <div>Hello world!</div>;
+  return <HomePage />;
 };
 
-export default App
+export default App;

@@ -15,17 +15,14 @@ dist/
 dist-ssr/
 build/
 
-# Vite specific
+# Vite cache
 .vite/
 *.swp  # Swap files
 
 # TypeScript
 *.tsbuildinfo
 *.d.ts
-
-# Editor directories and files
-.vscode/
-.idea/
+node_modules/.tmp/
 
 # System files
 .DS_Store
@@ -40,6 +37,16 @@ Thumbs.db
 *.swp
 *.swo
 *.swn
+
+# Yarn-specific
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+.yarnrc.yml
 
 # Yarn lock file backups (if applicable)
 yarn.lock.*
@@ -56,6 +63,7 @@ ehthumbs.db
 # IDE specific
 .idea/
 *.code-workspace
+.vscode/
 
 # Build output directories
 out/
