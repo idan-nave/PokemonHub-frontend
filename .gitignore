@@ -20,8 +20,6 @@ build/
 *.swp  # Swap files
 
 # TypeScript
-*.tsbuildinfo
-*.d.ts
 node_modules/.tmp/
 
 # System files

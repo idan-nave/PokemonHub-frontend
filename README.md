@@ -55,7 +55,6 @@ if still needed- apply permissions over the project for ease of development, to 
 ```
 sudo chown -R $(whoami):$(whoami) .../pokemon-hub-frontend
 ```
-
 ### 4. Install Dependencies
 
 Once you have the correct Node.js version, install the project dependencies using Yarn:
