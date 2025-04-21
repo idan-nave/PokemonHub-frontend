@@ -1,0 +1,23 @@
+/* PokemonList styles */
+.list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .item {
+    padding: 10px;
+    border-bottom: 1px solid #ffffff;
+  }
+  
+  .item:last-child {
+    border-bottom: none;
+  }
+  
+  .item:hover {
+    background-color: #ffffff;
+  }
+  

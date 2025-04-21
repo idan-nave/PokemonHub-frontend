@@ -26,7 +26,7 @@ git clone https://github.com/idan-nave/PokemonHub-frontend
 NVM should be installed first (https://github.com/nvm-sh/nvm). Use the following commands to install and use the correct version of Node.js:
 
 ```
-nvm install
+nvm install node # for stable version
 ```
 
 From now on, ensure you're using the correct version of Node.js with:
@@ -40,10 +40,12 @@ This will use the Node.js version specified in the `.nvmrc` file.
 ### 3. Install Yarn via Corepack
 
 Yarn is the default package manager for this project, managed via **Corepack**. This ensures consistency across development environments (without relying on the globally installed npm package manager), aligning with best practices for dependency management.
+Note that Yarn can be installed with npm as well.
 
 To enable Corepack and set up Yarn, run:
 
 ```
+npm install -g corepack # if not installed already
 corepack enable
 corepack prepare yarn@stable --activate
 ```

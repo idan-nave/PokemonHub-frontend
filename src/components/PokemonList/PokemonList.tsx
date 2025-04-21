@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Pokemon } from '@/types/pokemon';
-import { fetchAllPokemons } from '@api/pokemonApi';
-import styles from '@styles/PokemonList.module.css';
+import { fetchAllPokemons } from '@/api/pokemonApi';
+import styles from '@/styles/PokemonList.module.css';
 
 export const PokemonList = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
@@ -11,13 +11,13 @@ export const PokemonList = () => {
   }, []);
 
   return (
-    <ul className={styles.list}>
-      {pokemons.map((pokemon) => (
-        <li key={pokemon.pokedex} className={styles.item}>
-          #{pokemon.pokedex} - {pokemon.name}
-        </li>
-      ))}
-    </ul>
+      <ul className={styles.list}>
+        {pokemons.map((pokemon) => (
+          <li key={pokemon.pokedex} className={styles.item}>
+            #{pokemon.pokedex} - {pokemon.name}
+          </li>
+        ))}
+      </ul>
   );
 };
 
