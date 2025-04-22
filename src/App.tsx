@@ -4,9 +4,9 @@ import { useEffect } from 'react'
 
 const App = () => {
 
-  useEffect(() => {
-    checkCorsOptions();
-  }, []);
+  // useEffect(() => {
+  //   checkCorsOptions();
+  // }, []);
   return <HomePage />;
 };
 
