@@ -20,5 +20,3 @@ export const PokemonList = () => {
       </ul>
   );
 };
-
-export default PokemonList;
