@@ -78,7 +78,7 @@ Start the development server with:
 yarn dev
 ```
 
-The application should now be running on [http://localhost:5137](http://localhost:5137), presenting a list of all original 151 Pokémons.
+The application should now be running on [http://localhost:5137](http://localhost:5137), presenting a list of all original 151 Pokémons. Note that port ```5137``` is important, as this is the current supported port by the ackend API service.
 
 ### 7. Build the Application
 
