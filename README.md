@@ -40,7 +40,6 @@ This will use the Node.js version specified in the `.nvmrc` file.
 
 ```
 sudo npm install --global yarn
-sudo yarn global add create-vite
 ```
 
 if still needed- apply permissions over the project for ease of development, to avoid exessive need of ```sudo```.
@@ -53,13 +52,25 @@ sudo chown -R $(whoami):$(whoami) .../pokemon-hub-frontend
 Once you have the correct Node.js version, install the project dependencies using Yarn:
 
 ```
-yarn init      # reply for Qs to setup project metadata
 yarn install
 ```
 
 This will install the necessary packages and manage dependencies via **Yarn**'s `node_modules/` directory, described by  ```yarn.lock```.
 
-### 5. Run the Development Server
+### 5. Setup Pokémon Backend API service
+
+Host/Run the [API server](https://github.com/idan-nave/PokemonHub/) independenly. follow the README.md of it for setup. if locally, use:
+
+```
+ ./gradlew bootRun
+```
+
+note this app defaults to ```http://localhost:8080/pokemons``` for API requests, but a different URL can be set by adding a ```./.env.local``` file at the root of this app, and adding a custom entry, as such:
+```
+VITE_API_BASE_URL=http://CUSTOM_URL/pokemons
+```
+
+### 6. Run the Development Server
 
 Start the development server with:
 
