@@ -80,7 +80,7 @@ yarn dev
 
 The application should now be running on [http://localhost:5137](http://localhost:5137), presenting a list of all original 151 Pokémons.
 
-### 6. Build the Application
+### 7. Build the Application
 
 To create a production build of the application:
 
@@ -90,7 +90,7 @@ yarn build
 
 This will output the production files in the `dist/` directory.
 
-### Notes- Development Dependencies
+### Development Notes
 
 We use the following development-only dependencies for better development experience and scalability:
 
@@ -98,6 +98,7 @@ We use the following development-only dependencies for better development experi
 yarn add --dev @types/node path-browserify
 ```
 
-@types/node: Provides TypeScript definitions for Node.js built-in modules. This is especially useful when writing configuration files (like vite.config.ts) or using Node-specific features in a TypeScript environment.
+@types/node: Provides TypeScript definitions for Node.js built-in modules, needed for configuration files (like vite.config.ts) & using Node-specific features in a TypeScript environment.
 
 path-browserify: A browser-compatible fallback for Node's path module. This ensures compatibility and smooth bundling in browser-based apps when certain libraries depend on Node.js internals.
+Moreover- it is needed for extensive use of path aliases that are defined with the '@pathName' alias through all of the .tsx files. Aliases are defined in 'tsconfig.app.json'
