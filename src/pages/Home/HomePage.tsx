@@ -1,5 +1,5 @@
 import { PokemonList } from '@/components/PokemonList/PokemonList';
-import styles from '@/styles/HomePage.module.css';
+import styles from '@/pages/Home/HomePage.module.css';
 
 export const HomePage = () => {
   return (

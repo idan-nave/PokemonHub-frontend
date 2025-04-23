@@ -55,8 +55,6 @@ Once you have the correct Node.js version, install the project dependencies usin
 yarn install
 ```
 
-This will install the necessary packages and manage dependencies via **Yarn**'s `node_modules/` directory, described by  ```yarn.lock```.
-
 ### 5. Setup Pokémon Backend API service
 
 Host/Run the [API server](https://github.com/idan-nave/PokemonHub/) independenly. follow the README.md of it for setup. if locally, use:
@@ -89,16 +87,3 @@ yarn build
 ```
 
 This will output the production files in the `dist/` directory.
-
-### Development Notes
-
-We use the following development-only dependencies for better development experience and scalability:
-
-```
-yarn add --dev @types/node path-browserify
-```
-
-@types/node: Provides TypeScript definitions for Node.js built-in modules, needed for configuration files (like vite.config.ts) & using Node-specific features in a TypeScript environment.
-
-path-browserify: A browser-compatible fallback for Node's path module. This ensures compatibility and smooth bundling in browser-based apps when certain libraries depend on Node.js internals.
-Moreover- it is needed for extensive use of path aliases that are defined with the '@pathName' alias through all of the .tsx files. Aliases are defined in 'tsconfig.app.json'
