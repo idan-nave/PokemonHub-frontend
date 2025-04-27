@@ -30,11 +30,11 @@ export const PokemonList = () => {
     }
   }, []);
 
+
   return (
     (!isMounted.current && errorArr.length === 0)
-      ?
-      <div className={styles.container_loader}> <Loader/> </div>
-        : errorArr.length !== 0
+      ? <div className={styles.container_loader}> <Loader /> </div>
+      : errorArr.length !== 0
         ? <ErrorBox errArr={errorArr} />
         : <ul className={styles.list}>
           {pokemons.map((pokemon) => (
@@ -44,5 +44,5 @@ export const PokemonList = () => {
           ))
           }
         </ul>
-        );
+  );
 };
