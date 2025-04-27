@@ -1,6 +1,6 @@
 import { apiFetch } from '@/api/fetchApi';
-import { Pokemon } from '@/types/pokemon';
+import { PokemonType } from '@/types/pokemonType';
 
-export const fetchAllPokemons = async (): Promise<Pokemon[]> => {
-  return apiFetch<Pokemon[]>("");
+export const fetchAllPokemons = async (): Promise<PokemonType[]> => {
+  return apiFetch<PokemonType[]>("");
 };

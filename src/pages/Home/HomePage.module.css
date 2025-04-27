@@ -8,6 +8,7 @@
 
 .container_list {
   width: 20%;
+  min-height: 100vh;
   max-height: 100vh;
   overflow-y: auto;
   background-color: var(--sec-bg-color);

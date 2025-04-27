@@ -9,9 +9,10 @@
   --black: #000000;
   --prm-bg-color: var(--white);
   --sec-bg-color: #0b7cb1;
-  --error-color: #F44336;
+  --err-bg-color: #c58d8d;
   --prm-txt-color: var(--black);
   --sec-txt-color: var(--white);
+  --err-txt-color: #F44336;
 
   --size-sm: 0.5rem;
   --size-md: 1rem;

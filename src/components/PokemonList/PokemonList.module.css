@@ -17,3 +17,7 @@
   background-color: var(--white);
   color: var(--black);
 }
+
+.container_loader {
+  display: flex;
+}
