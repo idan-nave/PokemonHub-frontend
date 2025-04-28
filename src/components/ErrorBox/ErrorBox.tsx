@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import styles from '@/components/ErrorBox/ErrorBox.module.css';
 
 export interface ErrorBoxProps {
