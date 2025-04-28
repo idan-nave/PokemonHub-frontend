@@ -7,32 +7,31 @@ import styles from '@/components/PokemonList/PokemonList.module.css';
 
 export const PokemonList = () => {
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
-  const isMounted = useRef(false);
   const [errorArr, setErrArr] = useState<Error[]>([]);
+  const [ignoreFetch, SetIgnoreFetch] = useState(false);
 
-  const fetchIfMounted = async () => {
+  const fetchIfNotIgnored = async () => {
     try {
       const pokeArr = await fetchAllPokemons();
-      if (isMounted.current) {
+      if (!ignoreFetch) {
         setPokemons(pokeArr)
       }
     } catch (error) {
-      isMounted.current = false;
       setErrArr(prevErrors => [...prevErrors, error as Error]);
+    } finally {
+      SetIgnoreFetch(true);
     }
   }
 
   useEffect(() => {
-    isMounted.current = true;
-    fetchIfMounted();
+    fetchIfNotIgnored();
     return () => {
-      isMounted.current = false;
+      SetIgnoreFetch(true);
     }
   }, []);
 
-
   return (
-    (!isMounted.current && errorArr.length === 0)
+    (!ignoreFetch && errorArr.length === 0)
       ? <div className={styles.container_loader}> <Loader /> </div>
       : errorArr.length !== 0
         ? <ErrorBox errArr={errorArr} />
@@ -41,8 +40,7 @@ export const PokemonList = () => {
             <li key={pokemon.pokedex} className={styles.item}>
               #{pokemon.pokedex} - {pokemon.name}
             </li>
-          ))
-          }
+          ))}
         </ul>
   );
 };

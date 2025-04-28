@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import styles from '@/components/ErrorBox/ErrorBox.module.css';
 
-export interface ErrArrType {
+export interface ErrorBoxProps {
   errArr: Error[];
 }
 
-export const ErrorBox = (errArr: ErrArrType) => {
+export const ErrorBox = (errArr: ErrorBoxProps) => {
   const [errorList, setErrorList] = useState<Error[]>([]);
 
   useEffect(() => {
