@@ -6,16 +6,8 @@ export interface ErrorBoxProps {
 }
 
 export const ErrorBox = (errArr: ErrorBoxProps) => {
-  const [errorList, setErrorList] = useState<Error[]>([]);
 
-  useEffect(() => {
-    setErrorList(errArr.errArr);
-    return () => {
-      setErrorList([]);
-    }
-  }, [errArr]);
-
-  const uniqueErrList = errorList.filter((error, index, self) =>
+  const uniqueErrList = errArr.errArr.filter((error, index, self) =>
     index == self.findIndex((t) => (t.name === error.name))
   );
 
