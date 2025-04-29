@@ -20,6 +20,7 @@ export const usePokemons = (): UsePokemonsAPI => {
       if (isLoading) {
         setIsLoading(false);
         setPokemons(pokeArr);
+        setErrors([]);
       }
     } catch (error) {
       if (isLoading) {
@@ -27,7 +28,6 @@ export const usePokemons = (): UsePokemonsAPI => {
       }
     } finally {
       setIsLoading(false);
-      setErrors([]);
     }
   };
 
