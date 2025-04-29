@@ -4,7 +4,7 @@ import { usePokemons } from "@/hooks/usePokemons";
 import styles from '@/components/PokemonList/PokemonList.module.css';
 
 export const PokemonList = () => {
-  const { pokemons, errorArr, ignoreFetch } = usePokemons();
+  const { pokemons, errorArr, isLoading } = usePokemons();
 
   return (
     (!ignoreFetch && errorArr.length === 0)
