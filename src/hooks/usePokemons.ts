@@ -10,7 +10,7 @@ interface UsePokemonsAPI {
 
 export const usePokemons = (): UsePokemonsAPI => {
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
-  const [errorArr, setErrArr] = useState<Error[]>([]);
+  const [errors, setErrors] = useState<Error[]>([]);
   const [ignoreFetch, setIgnoreFetch] = useState(false);
 
   const fetchIfNotIgnored = async () => {
