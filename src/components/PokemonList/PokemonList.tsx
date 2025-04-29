@@ -4,19 +4,29 @@ import { usePokemons } from "@/hooks/usePokemons";
 import styles from '@/components/PokemonList/PokemonList.module.css';
 
 export const PokemonList = () => {
-  const { pokemons, errorArr, isLoading } = usePokemons();
+  const { pokemons, errors, isLoading } = usePokemons();
+
+  if (isLoading) {
+    return (
+      <div className={styles.container_loader}>
+        <Loader />
+      </div>
+    );
+  }
+
+  if (errors.length !== 0) {
+    return (
+      <ErrorBox errArr={errors} />
+    );
+  }
 
   return (
-    (!ignoreFetch && errorArr.length === 0)
-      ? <div className={styles.container_loader}> <Loader /> </div>
-      : errorArr.length !== 0
-        ? <ErrorBox errArr={errorArr} />
-        : <ul className={styles.list}>
-          {pokemons.map((pokemon) => (
-            <li key={pokemon.pokedex} className={styles.item}>
-              #{pokemon.pokedex} - {pokemon.name}
-            </li>
-          ))}
-        </ul>
+    <ul className={styles.list}>
+      {pokemons.map((pokemon) => (
+        <li key={pokemon.pokedex} className={styles.item}>
+          #{pokemon.pokedex} - {pokemon.name}
+        </li>
+      ))}
+    </ul>
   );
 };

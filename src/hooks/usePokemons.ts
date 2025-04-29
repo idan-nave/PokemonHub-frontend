@@ -4,35 +4,36 @@ import { fetchAllPokemons } from '@/api/pokemonApi';
 
 interface UsePokemonsAPI {
   pokemons: PokemonType[];
-  errorArr: Error[];
-  ignoreFetch: boolean;
+  errors: Error[];
+  isLoading: boolean;
 }
 
 export const usePokemons = (): UsePokemonsAPI => {
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
   const [errors, setErrors] = useState<Error[]>([]);
-  const [ignoreFetch, setIgnoreFetch] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const fetchIfNotIgnored = async () => {
+  const fetchPokemons = async () => {
+    setIsLoading(true);
     try {
       const pokeArr = await fetchAllPokemons();
-      if (!ignoreFetch) {
-        setPokemons(pokeArr)
+      if (isLoading) {
+        setIsLoading(false);
+        setPokemons(pokeArr);
       }
     } catch (error) {
-      setErrArr(prevErrors => [...prevErrors, error as Error]);
+      if (isLoading) {
+        setErrors([error as Error]);
+      }
     } finally {
-      SetIgnoreFetch(true);
+      setIsLoading(false);
+      setErrors([]);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchIfNotIgnored();
-    return () => {
-      SetIgnoreFetch(true);
-    }
+    fetchPokemons();
   }, []);
 
-  return { pokemons, errorArr, ignoreFetch };
-
+  return { pokemons, errors, isLoading };
 };
