@@ -8,8 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "cy:run": "cypress run --browser chrome",
-    "cy:open": "cypress open --browser chrome"
+    "cy:run": "cypress run --component --browser edge",
+    "cy:open": "cypress open --component --browser edge"
   },
   "dependencies": {
     "react": "^19.1.0",

@@ -1,13 +1,55 @@
 {
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": [
+      "DOM",
+      "ES2024"
+    ],
+    "strict": true,
+    "jsx": "react-jsx",
+    "outDir": "dist",
+    "composite": true,
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@types/*": [
+        "src/types/*"
+      ],
+      "@api/*": [
+        "src/api/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ]
+    }
+  },
   "include": [
+    "src/**/*",
+    "cypress.config.ts",
+    "cypress.d.ts",
     "vite-env.d.ts",
     "vite.config.ts"
   ],
-  "files": [],
+  "exclude": [
+    "node_modules"
+  ],
   "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
     {
       "path": "./tsconfig.node.json"
     }
