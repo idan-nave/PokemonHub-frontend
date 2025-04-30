@@ -87,3 +87,9 @@ local-settings.json
 *.tgz
 *.bak
 
+# Cypress
+cypress/screenshots/*
+cypress/screenshots/**/*
+cypress/videos/*
+cypress/results/*
+cypress/cache/*
