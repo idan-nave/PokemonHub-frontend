@@ -66,7 +66,7 @@ describe('HomePage FAIL-Fetch Component Test', () => {
 
 describe('HomePage Loading & Lazy Fetch Prevention Test', () => {
     beforeEach(() => {
-        cy.intercept('GET', 'http://localhost:8080/pokemons', { delay: 3000, body: mockedPokemons }).as('getPokemons');
+        cy.intercept('GET', 'http://localhost:8080/pokemons', { body: mockedPokemons }).as('getPokemons');
         cy.mount(<HomePage />);
     });
 
