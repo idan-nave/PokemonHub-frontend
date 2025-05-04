@@ -20,6 +20,14 @@ export const PokemonList = () => {
     );
   }
 
+  if (!pokemons.length) {
+    return (
+      <ul className={styles.list}>
+        <li className={styles.notification}>no entries available</li>
+      </ul>
+    );
+  }
+
   return (
     <ul className={styles.list}>
       {pokemons.map((pokemon) => (

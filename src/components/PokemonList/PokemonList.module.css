@@ -9,6 +9,12 @@
   border-bottom: 1px solid var(--white);
 }
 
+.notification {
+  padding: var(--size-sm);
+  font-size: var(--font-md);
+  border-bottom: 1px solid var(--white);
+}
+
 .item:last-child {
   border-bottom: none;
 }

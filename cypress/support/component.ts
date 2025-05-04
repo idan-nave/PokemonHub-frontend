@@ -1,6 +1,5 @@
 import { mount } from 'cypress/react'
-import '../../src/styles/App.css'
-import '../../src/components/PokemonList/PokemonList.module.css'
+import '@/styles/App.css'
 
 declare global {
   namespace Cypress {
