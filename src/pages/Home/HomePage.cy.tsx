@@ -1,8 +1,3 @@
-// loader
-// error box
-
-// fetch is disregarded if component dismounts
-
 import { HomePage } from '@/pages/Home/HomePage';
 import { PokemonType } from '@/types/pokemonType';
 import pageStyles from '@/pages/Home/HomePage.module.css'
@@ -64,7 +59,27 @@ describe('HomePage FAIL-Fetch Component Test', () => {
     });
 
     it('render Error Box', () => {
-        cy.get(`ul.${errorStyles.box} li.${errorStyles.item}`).should('have.length', 0);
+        cy.get(`ul.${errorStyles.box} li.${errorStyles.item}`).should('have.length', 1);
         cy.get(`ul.${errorStyles.box} li.${errorStyles.item}`).first().should('contain', 'Server error: 500');
+    });
+})
+
+describe('HomePage Loading & Lazy Fetch Prevention Test', () => {
+    beforeEach(() => {
+        cy.intercept('GET', 'http://localhost:8080/pokemons', { delay: 3000, body: mockedPokemons }).as('getPokemons');
+        cy.mount(<HomePage />);
+    });
+
+    it('dismount loader after fetch', () => {
+        cy.get(`div.${listStyles.container_loader}`).as('loader').should('exist');
+        cy.wait('@getPokemons');
+        cy.get('@loader').should('not.exist');
+    });
+
+    it('halt fetch if PokemonList dismounts', () => {
+        cy.get(`div.${pageStyles.container_list}`).as('list');
+        cy.wait(1000);
+        cy.mount(<div>Navigation Simulation by foreign mount before fech done</div>);
+        cy.get('@list').should('not.exist');
     });
 })
