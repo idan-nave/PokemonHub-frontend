@@ -18,31 +18,15 @@
     "paths": {
       "@/*": [
         "src/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@pages/*": [
-        "src/pages/*"
-      ],
-      "@types/*": [
-        "src/types/*"
-      ],
-      "@api/*": [
-        "src/api/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@assets/*": [
-        "src/assets/*"
       ]
     }
   },
   "include": [
     "src/**/*",
+    "cypress/**/*",
+    "cypress/support",
+    "cypress/support/component.ts",
     "cypress.config.ts",
-    "cypress.d.ts",
     "vite-env.d.ts",
     "vite.config.ts"
   ],

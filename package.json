@@ -2,14 +2,13 @@
   "name": "pokemon-hub-frontend",
   "private": false,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "cy:run": "cypress run --component --browser edge",
-    "cy:open": "cypress open --component --browser edge"
+    "cy:run": "cypress run --component --browser chrome",
+    "cy:open": "cypress open --component --browser chrome"
   },
   "dependencies": {
     "react": "^19.1.0",

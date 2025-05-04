@@ -5,7 +5,7 @@
 // css/layout in effect
 // fetch is disregarded if component dismounts
 
-import { PokemonList } from '@/components/PokemonList/PokemonList';
+import { HomePage } from '@/pages/Home/HomePage';
 import { PokemonType } from '@/types/pokemonType';
 
 const mockedPokemons: PokemonType[] = [
@@ -16,7 +16,7 @@ const mockedPokemons: PokemonType[] = [
 describe('HomePage/PokemonList Layout Test', () => {
     beforeEach(() => {
         cy.intercept('GET', 'http://localhost:8080/pokemons', { body: mockedPokemons }).as('getPokemons');
-        cy.mount(<PokemonList/>);
+        cy.mount(<HomePage/>);
         cy.wait('@getPokemons');
     });
 
