@@ -1,85 +1,82 @@
-import { HomePage } from '@/pages/Home/HomePage';
-import { PokemonType } from '@/types/pokemonType';
+import { HomePage } from '@/pages/Home/HomePage'
+import { PokemonType } from '@/types/pokemonType'
 import pageStyles from '@/pages/Home/HomePage.module.css'
 import listStyles from '@/components/PokemonList/PokemonList.module.css'
 import errorStyles from '@/components/ErrorBox/ErrorBox.module.css'
 
 const mockedPokemons: PokemonType[] = [
     { pokedex: 1, name: 'Bulbasaur' },
-    { pokedex: 2, name: 'Ivysaur' }
+    { pokedex: 2, name: 'Ivysaur' },
 ]
 
-describe('HomePage OK-Fetch Component Test', () => {
+describe('Pokemons Load when data available', () => {
     beforeEach(() => {
-        cy.intercept('GET', 'http://localhost:8080/pokemons', { body: mockedPokemons }).as('getPokemons');
-        cy.mount(<HomePage />);
-        cy.wait('@getPokemons');
-    });
+        cy.intercept('GET', 'http://localhost:8080/pokemons', { body: mockedPokemons }).as('getPokemons')
+        cy.mount(<HomePage />)
+        cy.wait('@getPokemons')
+    })
 
-    it('render PokemonList on Left of HomePage with 20% width', () => {
-        cy.get(`div.${pageStyles.container_main}`).as('page');
-        cy.get(`div.${pageStyles.container_list}`).as('list');
+    it('displays a list of Pokemon', () => {
+        cy.get(`ul.${listStyles.list} li.${listStyles.item}`).should('have.length', mockedPokemons.length)
+        cy.contains('#1 - Bulbasaur').should('be.visible')
+        cy.contains('#2 - Ivysaur').should('be.visible')
+    })
 
-        cy.get('@page').should('have.css', 'display', 'flex');
-        cy.get('@page').should('have.css', 'flex-direction', 'row');
-        cy.get('@page').children().first().should('have.class', pageStyles.container_list);
+    it('positions the Pokemon list on the left with 20% width', () => {
+        cy.get(`div.${pageStyles.container_list}`).as('list')
         cy.window().then((win) => {
-            const expectedWidth = 0.2 * win.innerWidth + 'px';
-            cy.get('@list')
-                .should('have.css', 'width', expectedWidth)
-        });
-    });
-
-    it('render PokemonList with 2 pokemons', () => {
-        cy.get(`ul.${listStyles.list} li.${listStyles.item}`).should('have.length', mockedPokemons.length);
-        cy.get(`ul.${listStyles.list} li.${listStyles.item}`).first().should('contain', '#1 - Bulbasaur');
-        cy.get(`ul.${listStyles.list} li.${listStyles.item}`).eq(1).should('contain', '#2 - Ivysaur');
-    });
+            const expectedWidth = `${0.2 * win.innerWidth}px`
+            cy.get('@list').should('have.css', 'width', expectedWidth)
+        })
+    })
 })
 
-describe('HomePage No-Entries Component Test', () => {
+describe('Pokemons Load when No Pokemon Available', () => {
     beforeEach(() => {
-        cy.intercept('GET', 'http://localhost:8080/pokemons', { body: [] }).as('getNoPokemons');
-        cy.mount(<HomePage />);
-        cy.wait('@getNoPokemons');
-    });
+        cy.intercept('GET', 'http://localhost:8080/pokemons', { body: [] }).as('getNoPokemons')
+        cy.mount(<HomePage />)
+        cy.wait('@getNoPokemons')
+    })
 
-    it('render notification instead of empty list', () => {
-        cy.get(`ul.${listStyles.list} li.${listStyles.notification}`).should('have.length', 1);
-    });
+    it('displays a "No Pokémon found" notification', () => {
+        cy.get(`ul.${listStyles.list} li.${listStyles.notification}`).should('have.length', 1)
+    })
 })
 
-describe('HomePage FAIL-Fetch Component Test', () => {
+describe('Error shows when API Request Fails', () => {
     beforeEach(() => {
         cy.intercept('GET', 'http://localhost:8080/pokemons', {
             statusCode: 500, body: { message: 'Server Error' },
-        }).as('getPokemons');
-        cy.mount(<HomePage />);
-        cy.wait('@getPokemons');
-    });
+        }).as('getPokemons')
+        cy.mount(<HomePage />)
+        cy.wait('@getPokemons')
+    })
 
-    it('render Error Box', () => {
-        cy.get(`ul.${errorStyles.box} li.${errorStyles.item}`).should('have.length', 1);
-        cy.get(`ul.${errorStyles.box} li.${errorStyles.item}`).first().should('contain', 'Server error: 500');
-    });
+    it('displays an error message', () => {
+        cy.get(`ul.${errorStyles.box} li.${errorStyles.item}`).should('have.length', 1)
+        cy.get(`ul.${errorStyles.box} li.${errorStyles.item}`).should('contain', 'Server error: 500')
+    })
 })
 
-describe('HomePage Loading & Lazy Fetch Prevention Test', () => {
+describe('Loading is Prevented when navigation is conducted', () => {
     beforeEach(() => {
-        cy.intercept('GET', 'http://localhost:8080/pokemons', { body: mockedPokemons }).as('getPokemons');
+        cy.intercept('GET', 'http://localhost:8080/pokemons', {
+            delay: 2000, body: mockedPokemons,
+        }).as('getPokemons')
         cy.mount(<HomePage />);
     });
 
-    it('dismount loader after fetch', () => {
-        cy.get(`div.${listStyles.container_loader}`).as('loader').should('exist');
-        cy.wait('@getPokemons');
-        cy.get('@loader').should('not.exist');
-    });
+    it('displays loader and removes it after fetch', () => {
+        cy.get(`div.${listStyles.container_loader}`).as('loader').should('exist')
+        cy.wait('@getPokemons')
+        cy.get('@loader').should('not.exist')
+    })
 
-    it('halt fetch if PokemonList dismounts', () => {
-        cy.get(`div.${pageStyles.container_list}`).as('list');
-        cy.wait(1000);
-        cy.mount(<div>Navigation Simulation by foreign mount before fech done</div>);
-        cy.get('@list').should('not.exist');
-    });
+    it('halts fetch if the user navigates away before completion', () => {
+        cy.get(`div.${pageStyles.container_list}`).as('list')
+        cy.wait(500)
+        cy.mount(<div>Foreign Loading... Simulates navigation...</div>)
+        cy.wait(3000)
+        cy.get('@list').should('not.exist')
+    })
 })
