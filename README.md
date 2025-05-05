@@ -87,3 +87,16 @@ yarn build
 ```
 
 This will output the production files in the `dist/` directory.
+
+### 8. Test the Application
+
+Cypress FW is implemented for component-scoped testing.
+Tests treat an entire app page as the component, and validate layout, data, dis/mount, error-throwing. Available ```.cy.tsx``` tests can be run at batch with the following command:
+
+```
+yarn cy:open # browser mode
+```
+OR,
+```
+yarn cy:run # headless mode
+```
