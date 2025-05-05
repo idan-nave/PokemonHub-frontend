@@ -1,0 +1,23 @@
+.container_main {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 100vw;
+}
+
+.container_list {
+  width: 20%;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
+  background-color: var(--sec-bg-color);
+}
+
+.container_content {
+  width: 80%;
+  padding-left: var(--size-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

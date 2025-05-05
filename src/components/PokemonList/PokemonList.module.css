@@ -1,0 +1,27 @@
+.list {
+  list-style-type: none;
+  border-radius: var(--size-sm);
+}
+
+.item {
+  padding: var(--size-sm);
+  font-size: var(--font-md);
+  border-bottom: 1px solid var(--white);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.item:hover {
+  background-color: var(--white);
+  color: var(--black);
+  cursor: pointer;
+}
+
+.container_loader {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

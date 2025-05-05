@@ -1,0 +1,11 @@
+.box {
+  list-style-type: none;
+  border-radius: var(--size-sm);
+  background-color: var(--err-bg-color);
+}
+
+.item {
+  padding: var(--size-sm);
+  font-size: var(--font-md);
+  color: var(--err-txt-color);
+}
