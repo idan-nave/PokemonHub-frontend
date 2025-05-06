@@ -6,7 +6,7 @@ import styles from '@/components/PokemonList/PokemonList.module.css';
 export const PokemonList = () => {
   const { pokemons, errors, isLoading } = usePokemons();
 
-  if (isLoading) {
+  if (isLoading.current) {
     return (
       <div className={styles.container_loader}>
         <Loader />
@@ -17,6 +17,14 @@ export const PokemonList = () => {
   if (errors.length !== 0) {
     return (
       <ErrorBox errArr={errors} />
+    );
+  }
+
+  if (!pokemons.length) {
+    return (
+      <ul className={styles.list}>
+        <li className={styles.notification}>no entries available</li>
+      </ul>
     );
   }
 

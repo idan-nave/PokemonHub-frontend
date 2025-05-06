@@ -1,33 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, RefObject } from "react";
 import { PokemonType } from '@/types/pokemonType';
 import { fetchAllPokemons } from '@/api/pokemonApi';
 
 interface UsePokemonsAPI {
   pokemons: PokemonType[];
   errors: Error[];
-  isLoading: boolean;
+  isLoading: RefObject<boolean>;
 }
 
 export const usePokemons = (): UsePokemonsAPI => {
   const [pokemons, setPokemons] = useState<PokemonType[]>([]);
   const [errors, setErrors] = useState<Error[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = useRef(true);
 
   const fetchPokemons = async () => {
-    setIsLoading(true);
+    isLoading.current = true;
     try {
       const pokeArr = await fetchAllPokemons();
-      if (isLoading) {
-        setIsLoading(false);
+      if (isLoading.current) {
+        isLoading.current = false;
+
         setPokemons(pokeArr);
         setErrors([]);
       }
     } catch (error) {
-      if (isLoading) {
+
+      if (isLoading.current) {
         setErrors([error as Error]);
       }
     } finally {
-      setIsLoading(false);
+      isLoading.current = false;
     }
   };
 
