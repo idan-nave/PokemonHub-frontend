@@ -25,6 +25,12 @@
   cursor: pointer;
 }
 
+.current_item {
+  background-color: var(--checked-bg-color);
+  color: var(--black);
+  cursor: pointer;
+}
+
 .container_loader {
   min-height: 100vh;
   display: flex;

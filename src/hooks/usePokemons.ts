@@ -18,13 +18,10 @@ export const usePokemons = (): UsePokemonsAPI => {
     try {
       const pokeArr = await fetchAllPokemons();
       if (isLoading.current) {
-        isLoading.current = false;
-
         setPokemons(pokeArr);
         setErrors([]);
       }
     } catch (error) {
-
       if (isLoading.current) {
         setErrors([error as Error]);
       }

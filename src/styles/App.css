@@ -9,6 +9,7 @@
   --black: #000000;
   --prm-bg-color: var(--white);
   --sec-bg-color: #0b7cb1;
+  --checked-bg-color: #717171;
   --err-bg-color: #c58d8d;
   --prm-txt-color: var(--black);
   --sec-txt-color: var(--white);
