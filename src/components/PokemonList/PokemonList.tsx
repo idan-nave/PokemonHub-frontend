@@ -7,12 +7,12 @@ import styles from '@/components/PokemonList/PokemonList.module.css';
 
 export const PokemonList = () => {
   const { pokemons, errors, isLoading } = usePokemons();
-  const { setCurrentPokedex } = useDetails();
+  const { selectedPokedex, setSelectedPokedex } = useDetails();
   const [checkedItem, setCheckedItem] = useState<number | null>(null);
 
-  const handleSelect = (pokedex: number) => {
-    setCurrentPokedex(pokedex);
-    setCheckedItem(pokedex);
+  const handleSelect = (selection: number) => {
+    setSelectedPokedex([selection, ...selectedPokedex]);
+    setCheckedItem(selection);
   };
 
   if (isLoading.current) {
@@ -43,7 +43,7 @@ export const PokemonList = () => {
         <li
           key={pokemon.pokedex}
           onClick={() => handleSelect(pokemon.pokedex)}
-          className={`${styles.item} ${checkedItem === pokemon.pokedex ? styles.current_item : ''}`}>
+          className={`${styles.item} ${checkedItem === pokemon.pokedex ? styles.selected_item : ''}`}>
           #{pokemon.pokedex} - {pokemon.name}
         </li>
       ))}

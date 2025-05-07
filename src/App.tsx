@@ -1,5 +1,10 @@
 import { HomePage } from '@/pages/Home/HomePage';
+import { SelectedPokemonProvider } from './contexts/SelectedPokemonProvider';
 
 export const App = () => {
-  return <HomePage />;
+  return (
+    <SelectedPokemonProvider>
+      <HomePage />
+    </SelectedPokemonProvider>
+  );
 };

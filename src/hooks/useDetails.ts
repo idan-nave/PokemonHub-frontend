@@ -1,27 +1,27 @@
-import { useEffect, useState, useRef, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { PokemonDetailsType } from '@/types/pokemonDetailsType';
 import { fetchByPokedex } from '@/api/pokemonApi';
-import { CurrentPokemonContext } from '@/contexts/CurrentPokemonProvider';
+import { SelectedPokemonContext } from '@/contexts/SelectedPokemonProvider';
 
 interface UseDetailsAPI {
   details: PokemonDetailsType | undefined;
   errors: Error[];
   isLoading: boolean;
-  currentPokedex: number;
-  setCurrentPokedex: (value: number) => void;
+  selectedPokedex: number[];
+  setSelectedPokedex: (value: number[]) => void;
 }
 
 export const useDetails = (): UseDetailsAPI => {
   const [details, setDetails] = useState<PokemonDetailsType | undefined>(undefined);
   const [errors, setErrors] = useState<Error[]>([]);
-  const { currentPokedex, setCurrentPokedex } = useContext(CurrentPokemonContext);
+  const { selectedPokedex, setSelectedPokedex } = useContext(SelectedPokemonContext);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchDetails = async () => {
     setIsLoading(true);
-    if (currentPokedex) {
+    if (selectedPokedex[0]) {
       try {
-        const pokeDet = await fetchByPokedex(currentPokedex);
+        const pokeDet = await fetchByPokedex(selectedPokedex[0]);
         setDetails(pokeDet);
         setErrors([]);
       } catch (error) {
@@ -36,7 +36,7 @@ export const useDetails = (): UseDetailsAPI => {
 
   useEffect(() => {
     fetchDetails();
-  }, [currentPokedex]);
+  }, [selectedPokedex]);
 
-  return { details, errors, isLoading, currentPokedex, setCurrentPokedex };
+  return { details, errors, isLoading, selectedPokedex, setSelectedPokedex };
 };

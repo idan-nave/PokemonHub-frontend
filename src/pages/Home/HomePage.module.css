@@ -20,4 +20,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+
+.go_back_button{
+  font-size: var(--font-md);
+  background-color: var(--sec-bg-color);
+  cursor: pointer;
+  width: var(--size-lg);
+  height: var(--size-lg);
+  align-self: flex-start;
+  margin: var(--size-md);
+  position: absolute;
+  align-content: space-around;
 }

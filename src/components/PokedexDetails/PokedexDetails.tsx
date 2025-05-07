@@ -4,9 +4,9 @@ import { useDetails } from "@/hooks/useDetails";
 import styles from '@/components/PokedexDetails/PokedexDetails.module.css';
 
 export const PokedexDetails = () => {
-  const { details, errors, isLoading, currentPokedex } = useDetails();
+  const { details, errors, isLoading, selectedPokedex } = useDetails();
 
-  if (!currentPokedex) {
+  if (!selectedPokedex[0]) {
     return (
       <>
         <h1 className={styles.pokemon_header}>Welcome to the Pokémon Hub</h1>
@@ -14,8 +14,7 @@ export const PokedexDetails = () => {
       </>
     );
   }
-  console.log(details);
-
+  
   if (isLoading) {
     return (
       <div className={styles.container_loader}>
